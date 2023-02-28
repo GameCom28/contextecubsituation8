@@ -11,7 +11,7 @@
 #Vars
 $path = $env:HOMEDRIVE+$env:HOMEPATH+"\Documents"
 
-Get-Service | select Name,DisplayName,Status | Export-Csv -Path $path"\services.csv" -NoTypeInformation
+Get-Service | Where-Object {$_.status -like "running"} | select Name,DisplayName,Status | Export-Csv -Path $path"\services.csv" -NoTypeInformation
 
 Write-Host "Fichier Exporté dans"$path
 
